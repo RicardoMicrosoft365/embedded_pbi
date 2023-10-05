@@ -2,14 +2,14 @@
     "version": 2,
     "builds": [
         {
-            "src": "Embed for your customers/AppOwnsData/src/server.js",
+            "src": "src/server.js",
             "use": "@vercel/node"
         }
     ],
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "Embed for your customers/AppOwnsData/src/server.js"
+            "dest": "src/server.js"
         }
     ]
 }
