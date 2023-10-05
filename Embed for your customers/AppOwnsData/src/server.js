@@ -45,4 +45,10 @@ app.get('/getEmbedToken', async function (req, res) {
     res.status(result.status).send(result);
 });
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+app.listen(port, () => {
+    if (process.env.PORT) {
+        console.log(`Servidor online na porta ${port}`);
+    } else {
+        console.error('Erro ao iniciar o servidor');
+    }
+});
