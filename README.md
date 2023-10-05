@@ -1,34 +1,34 @@
-# Power BI Embedded sample in Node JS
+# Exemplo de Power BI Embedded em Node.js
 
-## Embed for your customers
+## Incorporar para seus clientes
 
-### Requirements
+### Requisitos
 
-1. [Node JS](https://nodejs.org/en/download/)
-   
-2. IDE/code editor. We recommend using Visual Studio Code.
+1. [Node.js](https://nodejs.org/en/download/)
 
-### Set up a Power BI app
+2. IDE/editor de código. Recomendamos o uso do Visual Studio Code.
 
-Follow the steps on [aka.ms/EmbedForCustomer](https://aka.ms/embedforcustomer)
+### Configurar um aplicativo Power BI
 
-### Run the application on localhost
+Siga as etapas em [aka.ms/EmbedForCustomer](https://aka.ms/embedforcustomer)
 
-1. Open IDE.
- 
-2. Open [AppOwnsData](./Embed%20for%20your%20customers/AppOwnsData) folder.
+### Executar a aplicação localmente
 
-3. Open terminal and install required dependencies by executing the following command.<br>
+1. Abra a IDE.
+
+2. Abra a pasta [AppOwnsData](./Embed%20for%20your%20customers/AppOwnsData).
+
+3. Abra o terminal e instale as dependências necessárias executando o seguinte comando.<br>
    `npm install`
-   
-4. Fill in the required parameters in the [config.json](./Embed%20for%20your%20customers/AppOwnsData/config/config.json) file related to AAD app, Power BI report, workspace, and user account information.
 
-5. Run the following command in CMD/PowerShell to start the application.<br>
+4. Preencha os parâmetros necessários no arquivo [config.json](./Embed%20for%20your%20customers/AppOwnsData/config/config.json) relacionados ao aplicativo AAD, relatório Power BI, espaço de trabalho e informações da conta do usuário.
+
+5. Execute o seguinte comando no CMD/PowerShell para iniciar a aplicação.<br>
    `npm start`
 
-6. Open **http://localhost:5300** in browser or refer to logs to check the port on which the application is running.
+6. Abra **http://localhost:5300** no navegador ou consulte os registros para verificar a porta na qual a aplicação está sendo executada.
 
-#### Supported browsers:
+#### Navegadores compatíveis:
 
 1. Google Chrome
 
@@ -36,6 +36,6 @@ Follow the steps on [aka.ms/EmbedForCustomer](https://aka.ms/embedforcustomer)
 
 3. Mozilla Firefox
 
-## Important
+## Importante
 
-For security reasons, in a real world application, passwords and secrets should not be stored in config files. Instead, consider securing your credentials with an application such as Key Vault.
+Por motivos de segurança, em um aplicativo do mundo real, senhas e segredos não devem ser armazenados em arquivos de configuração. Em vez disso, considere proteger suas credenciais com uma aplicação como o Key Vault.
