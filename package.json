@@ -2,7 +2,7 @@
     "name": "nodejs",
     "version": "1.0.0",
     "description": "## Embed for your customers",
-    "main": "index.js",
+    "main": "Embed for your customers/AppOwnsData/public/js/index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "prestart": "npm --prefix \"Embed for your customers/AppOwnsData\" install",
