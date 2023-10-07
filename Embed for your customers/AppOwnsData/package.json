@@ -18,6 +18,7 @@
         "guid": "0.0.12",
         "jquery": "^3.5.1",
         "node-fetch": "^2.6.1",
+        "nodejs": "file:../..",
         "path": "^0.12.7",
         "powerbi-client": "^2.16.5"
     },

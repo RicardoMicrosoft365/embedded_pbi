@@ -5,9 +5,10 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "NPM_CONFIG_PREFIX=\"Embed for your customers/AppOwnsData\" npm --prefix \"Embed for your customers/AppOwnsData\" start"
-
+        "prestart": "npm --prefix \"Embed for your customers/AppOwnsData\" install",
+        "start": "nodemon ./src/server.js"
     },
+    
     "author": "",
     "license": "ISC",
     "devDependencies": {
