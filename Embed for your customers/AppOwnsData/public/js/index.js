@@ -3,9 +3,14 @@
 // Licensed under the MIT license.
 // ----------------------------------------------------------------------------
 
-let models = window["powerbi-client"].models;
-let reportContainer = $("#report-container").get(0);
-
+if (typeof window !== 'undefined') {
+    // Este código será executado apenas no ambiente do navegador
+    let models = window["powerbi-client"].models;
+    let reportContainer = $("#report-container").get(0);
+  
+    // Outro código que depende da variável window
+  }
+  
 // Initialize iframe for embedding report
 powerbi.bootstrap(reportContainer, { type: "report" });
 
