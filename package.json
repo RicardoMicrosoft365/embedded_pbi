@@ -4,10 +4,12 @@
     "description": "## Embed for your customers",
     "main": "index.js",
     "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1",
-      "start": "npm --prefix \"Embed for your customers/AppOwnsData\" start"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "npm --prefix \"Embed for your customers/AppOwnsData\" start"
     },
     "author": "",
-    "license": "ISC"
-  }
-  
+    "license": "ISC",
+    "devDependencies": {
+        "nodemon": "^3.0.1"
+    }
+}
