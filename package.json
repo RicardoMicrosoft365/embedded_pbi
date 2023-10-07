@@ -5,7 +5,8 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "npm --prefix \"Embed for your customers/AppOwnsData\" start"
+        "start": "NPM_CONFIG_PREFIX=\"Embed for your customers/AppOwnsData\" npm --prefix \"Embed for your customers/AppOwnsData\" start"
+
     },
     "author": "",
     "license": "ISC",
