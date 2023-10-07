@@ -17,6 +17,7 @@
         "express": "^4.17.1",
         "guid": "0.0.12",
         "jquery": "^3.5.1",
+        "jsdom": "^22.1.0",
         "node-fetch": "^2.6.1",
         "nodejs": "file:../..",
         "path": "^0.12.7",

@@ -3,13 +3,12 @@
 // Licensed under the MIT license.
 // ----------------------------------------------------------------------------
 
-if (typeof window !== 'undefined') {
-    // Este código será executado apenas no ambiente do navegador
-    let models = window["powerbi-client"].models;
-    let reportContainer = $("#report-container").get(0);
-  
-    // Outro código que depende da variável window
-  }
+// Importe o módulo 'powerbi-client' diretamente
+const powerbi = require('powerbi-client');
+
+// Obtenha os modelos do Power BI
+const models = powerbi.models;
+ 
   
 // Initialize iframe for embedding report
 powerbi.bootstrap(reportContainer, { type: "report" });

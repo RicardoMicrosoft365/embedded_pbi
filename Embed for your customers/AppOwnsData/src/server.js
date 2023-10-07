@@ -1,48 +1,53 @@
-// ----------------------------------------------------------------------------
-// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT license.
-// ----------------------------------------------------------------------------
+const { JSDOM } = require('jsdom');
+const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
 
-let path = require('path');
-let embedToken = require(__dirname + '/embedConfigService.js');
-const utils = require(__dirname + "/utils.js");
-const express = require("express");
-const bodyParser = require("body-parser");
+// Crie uma instância JSDOM para fornecer o objeto window
+const dom = new JSDOM('<!DOCTYPE html><html><head></head><body></body></html>');
+global.window = dom.window;
+
+// Agora importe o módulo powerbi-client após definir global.window
+const powerbi = require('powerbi-client');
+const embedToken = require('./embedConfigService.js');
+const utils = require('./utils.js');
+
 const app = express();
-
-// Prepare server for Bootstrap, jQuery and PowerBI files
-app.use('/js', express.static('./node_modules/bootstrap/dist/js/')); // Redirect bootstrap JS
-app.use('/js', express.static('./node_modules/jquery/dist/')); // Redirect JS jQuery
-app.use('/js', express.static('./node_modules/powerbi-client/dist/')) // Redirect JS PowerBI
-app.use('/css', express.static('./node_modules/bootstrap/dist/css/')); // Redirect CSS bootstrap
-app.use('/public', express.static('./public/')); // Use custom JS and CSS files
-
 const port = process.env.PORT || 3000;
 
+// Serve static files
+app.use('/js', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js/')));
+app.use('/js', express.static(path.join(__dirname, 'node_modules/jquery/dist/')));
+app.use('/js', express.static(path.join(__dirname, 'node_modules/powerbi-client/dist/')));
+app.use('/css', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css/')));
+app.use('/public', express.static(path.join(__dirname, 'public/')));
+
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
-
-app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname + '/../views/index.html'));
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../views/index.html'));
 });
 
-app.get('/getEmbedToken', async function (req, res) {
+app.get('/getEmbedToken', async (req, res) => {
+    try {
+        // Validate whether all the required configurations are provided in config.json
+        const configCheckResult = utils.validateConfig();
+        if (configCheckResult) {
+            return res.status(400).send({ error: configCheckResult });
+        }
 
-    // Validate whether all the required configurations are provided in config.json
-    configCheckResult = utils.validateConfig();
-    if (configCheckResult) {
-        return res.status(400).send({
-            "error": configCheckResult
-        });
+        // Get the details like Embed URL, Access token, and Expiry
+        const result = await embedToken.getEmbedInfo();
+
+        // `result.status` specifies the statusCode that will be sent along with the result object
+        res.status(result.status).send(result);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ error: 'Internal server error' });
     }
-    // Get the details like Embed URL, Access token and Expiry
-    let result = await embedToken.getEmbedInfo();
-
-    // result.status specified the statusCode that will be sent along with the result object
-    res.status(result.status).send(result);
 });
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+app.listen(port, () => {
+    console.log(`Listening on port ${port}`);
+});
